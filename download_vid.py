@@ -31,9 +31,9 @@ def read_meta():
 		# print(vid_link)
 		try:
 			YouTube(vid_link).streams[0].download()
-			print('\n\n %d-th (all %d) video ### downloaded ### \n\n'.format(vid_idx, vid_idx))
+			print('\n\n {}-th (all {}) video ### downloaded ### \n\n'.format(vid_idx, vid_idx))
 		except:
-			print('\n\n %d-th (all %d) video *** unavailable *** \n\n'.format(vid_idx, vid_idx))
+			print('\n\n {}-th (all {}) video *** unavailable *** \n\n'.format(vid_idx, vid_idx))
 			
 
 if __name__=='__main__':
