@@ -16,7 +16,7 @@ def read_meta():
 	lines = f.readlines()
 	lines.pop(0)
 	
-	pdb.set_trace()
+	# pdb.set_trace()
 	all_vid_num = len(lines)
 	vid_idx = 0
 	for l in lines:
