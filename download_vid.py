@@ -17,7 +17,11 @@ def read_meta():
 	lines.pop(0)
 	
 	pdb.set_trace()
+	all_vid_num = len(lines)
+	vid_idx = 0
 	for l in lines:
+		vid_idx += 1
+	
 		el = re.split(';\t', l)
 		yid = el[0]
 		# print(el[0])
@@ -25,8 +29,12 @@ def read_meta():
 		# To download a video with ID yid
 		vid_link = 'https://www.youtube.com/watch?v=' + yid
 		# print(vid_link)
-		YouTube(vid_link).streams[0].download()
-
+		try:
+			YouTube(vid_link).streams[0].download()
+			print('\n\n %d-th (all %d) video ### downloaded ### \n\n'.format(vid_idx, vid_idx))
+		except:
+			print('\n\n %d-th (all %d) video *** unavailable *** \n\n'.format(vid_idx, vid_idx))
+			
 
 if __name__=='__main__':
     read_meta()
