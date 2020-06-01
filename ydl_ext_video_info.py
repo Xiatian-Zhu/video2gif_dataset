@@ -43,7 +43,7 @@ def download_videos():
 			# print(vid_link)
 			try:
 				result = ydl.extract_info(vid_link, download=False)
-         				# We just want to extract the info
+         		# We just want to extract the info
 				print(result)
 				time.sleep(5)
 				
@@ -56,7 +56,7 @@ def download_videos():
 			except:
 # 				print('\n\n {}-th (all {}/{}) video *** downloaded failed *** \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
 			
-			time.sleep(3)
+# 			time.sleep(3)
 				
 if __name__=='__main__':
     download_videos()
