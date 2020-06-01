@@ -54,7 +54,7 @@ def download_videos():
 # 				else:
 # 					print('\n\n {}-th (all {}/{}) video ^^^ downloaded failed ^^^ \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
 			except:
-# 				print('\n\n {}-th (all {}/{}) video *** downloaded failed *** \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
+				print('\n\n {}-th (all {}/{}) video *** downloaded failed *** \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
 			
 # 			time.sleep(3)
 				
