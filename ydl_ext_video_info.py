@@ -10,6 +10,7 @@ import os.path
 from os import path
 import time
 import re
+import pdb
 
 
 def download_videos():
@@ -43,7 +44,7 @@ def download_videos():
 			# print(vid_link)
 			try:
 				result = ydl.extract_info(vid_link, download=False)
-         		# We just want to extract the info
+				pdb.set_trace()
 				print(result)
 				time.sleep(5)
 				
