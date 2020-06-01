@@ -50,6 +50,7 @@ def download_videos():
 				if path.exists(vid_fname):
 					# rename with ID
 					os.rename(vid_fname, yid+'.mp4')
+					print(yid+'.mp4')
 			except:
 				print('\n\n {}-th (all {}) video *** ext info failed *** \n\n'.format(vid_idx, all_vid_num))
 				
