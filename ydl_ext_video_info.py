@@ -11,6 +11,7 @@ from os import path
 import time
 import re
 import pdb
+import os
 
 
 def download_videos():
@@ -44,20 +45,13 @@ def download_videos():
 			# print(vid_link)
 			try:
 				result = ydl.extract_info(vid_link, download=False)
-				pdb.set_trace()
-				print(result)
-				time.sleep(5)
+				vid_fname = result['title'] + '.mp4'
 				
-				# ydl.download([vid_link])
-# 				if path.exists('./train_videos/'+yid+'.mp4'):
-# 					dl_vid_num += 1
-# 					print('\n\n {}-th (all {}/{}) video $$$ downloaded done $$$ \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
-# 				else:
-# 					print('\n\n {}-th (all {}/{}) video ^^^ downloaded failed ^^^ \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
+				if path.exists(vid_fname):
+					# rename with ID
+					os.rename(vid_fname, yid+'.mp4')
 			except:
-				print('\n\n {}-th (all {}/{}) video *** downloaded failed *** \n\n'.format(vid_idx, dl_vid_num, all_vid_num))
-			
-# 			time.sleep(3)
+				print('\n\n {}-th (all {}) video *** ext info failed *** \n\n'.format(vid_idx, all_vid_num))
 				
 if __name__=='__main__':
     download_videos()
