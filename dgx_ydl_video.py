@@ -48,6 +48,9 @@ def download_videos():
 		f = open('metadata.txt')
 		lines = f.readlines()
 		lines.pop(0)
+		
+		# skip those that have been downloaded
+		lines = lines[101000:]
 	
 		# pdb.set_trace()
 		all_vid_num = len(lines)
@@ -77,7 +80,6 @@ def download_videos():
 		
 			# To download a video with ID yid
 			vid_link = 'https://www.youtube.com/watch?v=' + yid
-			# print(vid_link)
 			try:
 				ydl.download([vid_link])
 				if path.exists('./train_videos/'+yid+'.mp4'):
