@@ -30,6 +30,9 @@ def download_videos():
 		all_vid_num = len(lines)
 		vid_idx = 0
 		dl_vid_num = 0
+		
+		# to continue from a break point 43917
+		lines = lines[43917:]
 		for l in lines:
 			vid_idx += 1
 	
