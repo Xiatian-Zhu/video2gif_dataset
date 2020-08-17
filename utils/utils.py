@@ -44,7 +44,7 @@ def video_ID_list():
 	return video_list
 
 
-def get_download_status():
+def download_status():
 	dirname = '/home/nfs/datasets/video2gif/train_videos/'
 	vfiles = glob.glob(dirname+'*.mp4')
 
@@ -77,5 +77,33 @@ def get_download_status():
 		for item in undownloaded_video_list:
 			writer.writerow([item])
 
+	with open('video2gif_train_all.csv', 'w', newline='') as file:
+		writer = csv.writer(file)
+		# writer.writerows(nonexist_vid)
+		for item in all_video_list:
+			writer.writerow([item])
+
+
+def overlap_phdd_vid2gif():
+	with open('video2gif_train_all.csv', 'r') as file:
+		r = csv.reader(file)
+		vid2gif_train = []
+		for it in r:
+			vid2gif_train.append(it[0])
+		
+		print(vid2gif_train[0:2])
+
+	with open('PHD-GIFs_train_all.csv', 'r') as file:
+		r = csv.reader(file)
+		phdd_train = []
+		for it in r:
+			phdd_train.append(it[0])
+
+		print(phdd_train[0:2])
+
+	overlap_list = set(vid2gif_train).intersection(set(phdd_train))
+	print(f'o===> Overlap video numer: {len(overlap_list)}')
+
+
 if __name__=='__main__':
-    get_download_status()
+    overlap_phdd_vid2gif()
