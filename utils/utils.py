@@ -6,8 +6,9 @@ __author__ = 'xzhu'
 import pdb
 import re
 
+import os
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, exists
 import glob
 import pdb
 
@@ -45,18 +46,28 @@ def video_ID_list():
 
 
 def download_status():
-	dirname = '/home/nfs/datasets/video2gif/train_videos/'
-	vfiles = glob.glob(dirname+'*.mp4')
+	dirname = '/home/nfs/datasets/video2gif/train/'
+
+	exts = ['.m4a', '.webm', '.mp4', '.mkv']
+	all_vfiles = []
+	downloaded_video_list = []
+	for ext in exts:
+		vfiles = glob.glob(dirname + '*' + ext)
+		all_vfiles = all_vfiles + vfiles
+		for idx in range(len(vfiles)):
+			vid = vfiles[idx][len(dirname):(-1*len(ext))]
+			downloaded_video_list.append(vid)
+
+	# print(all_vfiles)
+	print(f'videos: {len(all_vfiles)}')
+	print(downloaded_video_list)
+	print(f'videos" {len(downloaded_video_list)}')
 
 	# pdb.set_trace()
-	downloaded_video_list = vfiles.copy()
-
-	for idx in range(len(vfiles)):
-		downloaded_video_list[idx] = vfiles[idx][len(dirname):-4]
+	# import sys
+	# sys.exit()
 
 	print('*** Videos downloaded: {}'.format(len(downloaded_video_list)))
-
-	print(downloaded_video_list[0:2])
 
 	######## All (train) video list ############
 	all_video_list = video_ID_list()
@@ -104,6 +115,25 @@ def overlap_phdd_vid2gif():
 	overlap_list = set(vid2gif_train).intersection(set(phdd_train))
 	print(f'o===> Overlap video numer: {len(overlap_list)}')
 
+import shutil
+def move_videos_by_id():
+	dirname = '/home/nfs/datasets/video2gif/train_videos/'
+	new_dir_name = '/home/nfs/datasets/video2gif/train/'
+	exts = ['.m4a', '.webm', '.mp4', '.mkv']
+
+	######## All (train) video list ############
+	all_video_list = video_ID_list()
+
+	for vid in all_video_list:
+		for ext in exts:
+			vf = dirname + vid + ext
+			if os.path.exists(vf):
+				nvf = new_dir_name + vid + ext
+				shutil.move(vf, nvf)
+				print(f'video {vid + ext} is moved')
+
+	print('*** All videos: {}'.format(len(all_video_list)))
+
 
 if __name__=='__main__':
-    overlap_phdd_vid2gif()
+	download_status()
